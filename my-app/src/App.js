@@ -3,7 +3,8 @@ import './App.css';
 import CurrencyRow from './CurrencyRow';
 
 // Call to the currency exchange API
-const BASE_URL = 'https://api.exchangeratesapi.io/latest'
+// This URL can be changed to include exchange rates from 1999 to present. 
+const BASE_URL = 'https://api.exchangeratesapi.io/latest'  // replace latest with yyyy-mm-dd format and it gives you the rates at that time
 
 function App() {
 
@@ -34,9 +35,7 @@ useEffect(() =>{
   .then(res => res.json()) //turns the response to JSON format
   .then(data => {
     //console.log(data);
-    // let dates = data.rates;
-    // console.log(dates);
-    // let options = data.rates.'1999-01-04';
+
     const baseCurrency = Object.keys(data.rates)[26]
     setCurrencyOptions([data.base, ...Object.keys(data.rates)]);
     setToCurrency(Object.keys(data.rates)[26])
@@ -66,7 +65,9 @@ function handleToAmountChange(e){
 
   return (
     <>
-      <h1>Convert </h1>
+      <h1>Currency Converter </h1>
+      <h2>Simply choose the two currencies and change either value and the conversion happens </h2>
+
       <CurrencyRow 
         currencyOptions={currencyOptions}
         selectedCurrency={fromCurrency}
